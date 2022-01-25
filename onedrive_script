@@ -1,4 +1,4 @@
-curl  -L https://raw.githubusercontent.com/clanto/ESET_Protect_Script/main/download/onedrive.bat?raw=true > C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\onedrive.bat
+curl  -L https://raw.githubusercontent.com/clanto/ESET_Protect_Script/main/download/onedrive.bat?raw=true > "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\onedrive.bat"
 reg add HKLM\SOFTWARE\Policies\Microsoft\OneDrive /v PermitDisablePermissionInheritance /t REG_DWORD /d 00000001 /f
 reg add HKLM\SOFTWARE\Policies\Microsoft\OneDrive /v DisableFirstDeleteDialog /t REG_DWORD /d 00000001 /f
 reg add HKLM\SOFTWARE\Policies\Microsoft\OneDrive /v SilentAccountConfig /t REG_DWORD /d 00000001 /f
