@@ -3,6 +3,6 @@ REG add HKCU\SOFTWARE\Microsoft\OneDrive /v DisablePauseOnMeteredNetwork /t REG_
 REG add HKCU\SOFTWARE\Microsoft\OneDrive /v DisablePersonalSync /t REG_DWORD /d 00000001 /f
 REG add HKCU\SOFTWARE\Microsoft\OneDrive /v EnableAllOcsiClients /t REG_DWORD /d 00000001 /f
 del /F /S /Q %localappdata%\Microsoft\Office\16.0\OfficeFileCache\*.*
-cd %localappdata%\Microsoft\Office\16.0\OfficeFileCache\
-RMDIR /S /Q .
+RMDIR /S /Q %localappdata%\Microsoft\Office\16.0\OfficeFileCache\
+mkdir %localappdata%\Microsoft\Office\16.0\OfficeFileCache\
 %localappdata%\Microsoft\OneDrive\OneDrive.exe /background
