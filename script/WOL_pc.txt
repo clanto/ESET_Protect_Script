@@ -1,6 +1,6 @@
 mkdir C:\protect
 mkdir C:\protect\wol
-curl  -L https://github.com/clanto/ESET_Protect_Script/WOL/WakeOnLAN.exe?raw=true > C:\protect\wol\WakeOnLAN.exe
+curl  -L https://github.com/clanto/ESET_Protect_Script/download/WakeOnLAN.exe?raw=true > C:\protect\wol\WakeOnLAN.exe
 C:\protect\wol\WakeOnLAN.exe XX-XX-XX-XX-XX-XX
 
 #############################
