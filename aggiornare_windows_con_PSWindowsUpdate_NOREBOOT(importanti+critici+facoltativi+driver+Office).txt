@@ -1,0 +1,11 @@
+mkdir C:\protect
+mkdir C:\protect\aggiornamenti
+powershell Install-PackageProvider NuGet -Force
+powershell Install-Module -Name PSWindowsUpdate -Force
+powershell Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+powershell Import-Module PSWindowsUpdate
+powershell Add-WUServiceManager -ServiceID 7971f918-a847-4430-9279-4a52d1efe18d -AddServiceFlag 7 -confirm:$false
+powershell Get-WindowsUpdate -MicrosoftUpdate
+powershell Install-WindowsUpdate -MicrosoftUpdate -AcceptAll -IgnoreReboot -Verbose >> C:\protect\aggiornamenti\log.log
+powershell "$NomeFile = $(get-date -f "yyyy_MM_dd_HH_mm_ss") ; Rename-Item C:\protect\aggiornamenti\log.log C:\protect\aggiornamenti\$NomeFile.log"
+powershell Set-ExecutionPolicy -ExecutionPolicy Restricted
