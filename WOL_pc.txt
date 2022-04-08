@@ -1,0 +1,9 @@
+mkdir C:\protect
+mkdir C:\protect\wol
+curl  -L https://github.com/clanto/ESET_Protect_Script/WOL/WakeOnLAN.exe?raw=true > C:\protect\wol\WakeOnLAN.exe
+C:\protect\wol\WakeOnLAN.exe XX-XX-XX-XX-XX-XX
+
+#############################
+Dove c'è XX-XX-XX-XX-XX-XX sostituirlo con il MAC address desiderato e ripetere la riga per quanti mac address si vogliono accendere in WOL.
+Lo script permette a qualunque PC di accendere gli altri, utile in situazioni di emergenza dove la console è in un altra sede ed altri metodi sono momentaneamente non disponibili.
+Si possono mettere tutti i Mac address nel comando e poi farlo eseguire indistintamente da tutti i Computer, così basta anche uno qualunque dei Computer accesi per poter accendere gli altri.
