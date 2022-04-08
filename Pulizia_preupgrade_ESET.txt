@@ -1,0 +1,10 @@
+mkdir C:\protect
+mkdir C:\protect\pulizia
+query session >C:\protect\pulizia\session.txt
+for /f "skip=2 tokens=3," %%i in (session.txt) DO logoff %%i
+del C:\protect\pulizia\session.txt
+rd "%TEMP%" /s /q
+rd "C:\Windows\Temp" /s /q
+
+##########################
+Questo script serve a pulire le cartelel temporanee in vista dell'upgrade di versione dell'Agent o dell'Endpoint Security per evitare problemi di upgrade.
