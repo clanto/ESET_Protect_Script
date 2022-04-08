@@ -1,0 +1,7 @@
+mkdir C:\protect
+mkdir C:\protect\aggiornamenti
+curl  -L http://b1.download.windowsupdate.com/c/upgr/2021/08/windows10.0-kb5003791-x64_b401cba483b03e20b2331064dd51329af5c72708.cab > C:\protect\aggiornamenti\windows10.0-kb5003791-x64_b401cba483b03e20b2331064dd51329af5c72708.cab
+DISM.exe /Online /Add-Package /Quiet /PackagePath:C:\protect\aggiornamenti\windows10.0-kb5003791-x64_b401cba483b03e20b2331064dd51329af5c72708.cab
+
+############################
+Script da usare solo nel caso in cui il PC sia ad una release precedente e tutti i metodi di aggiornamento di windows provati non cambino la versione di windows a 21H2
