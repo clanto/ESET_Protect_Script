@@ -1,0 +1,6 @@
+reg add HKLM\SYSTEM\CurrentControlSet\Control\Lsa /v RunAsPPL /t REG_DWORD /d 00000001 /f
+
+############################
+Questo script inserisce la chiave di registro per abilitare l'esecuzione come PPL e limitare il DUMP di LSASS
+Qui poi come impostare HIPS per controllare che non venga modificata successivamente
+https://supporto.clanto.it/kb/limitare-il-dump-del-file-lsass-hips/
