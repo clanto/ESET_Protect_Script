@@ -42,7 +42,11 @@ Non ci sono macro
 |Log Minacce ultimi 5 minuti<br><br>All'interno della chiave il valore ```-time_check 5``` equivale ai 5 minuti, si può modificare questo numero ed impostare il numero di minuti per cui si vuole recuperare il log|Agente Zabbix|```system.run[powershell -NoProfile -ExecutionPolicy bypass -File "C:\PROGRA~1\ZABBIX~1\script\checkviruslog.ps1" -time_check 5]```|Testo|10s|`Antivirus:ESET` `ESET:Log`|
 
 ## Elementi Dipendenti
-
+| Nome        | Tipo           | Chiave  | Master Item  |Tipo di informazione | Tag | Preprocesso|
+| ------------- |:-------------|:-------------|:-------------|:-----|:-----|:-----|
+|Info Versione Endpoint ESET|Dependent Item| ```versione.endpoint``` |```ESET: Log Info Endpoint ESET```|Testo|`Antivirus:ESET` `ESET:Info`|```JSONPath -> $.result.version```|
+|Info Prodotto Endpoint ESET|Dependent Item| ```prodotto.endpoint``` |```ESET: Log Info Endpoint ESET```|Testo|`Antivirus:ESET` `ESET:Info`|```JSONPath -> $.result.description```|
+|Info Lingua Endpoint ESET|Dependent Item| ```info.endpoint.lang``` |```ESET: Log Info Endpoint ESET```|Testo|`Antivirus:ESET` `ESET:Info`|```JSONPath -> $.result.lang_id```<br><br>```Sostituisci: 1040 -> Italiano```|
 
 ## Triggers
 | Nome        | Descrizione           | Severità  | Tag  | Espressione  |
