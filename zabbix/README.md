@@ -1,6 +1,6 @@
 Monitoraggio dei prodotti ESET Endpoint tramite Zabbix
 
-Descrizione
+# Descrizione
 Lingua: Italiano
 Autore: Clanto Services
 Sito: https://clanto.it
