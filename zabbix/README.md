@@ -16,8 +16,6 @@ I log sono impostati per essere recuperati ogni 10 secondi così da dare uno sta
 Per una lista dei comandi RMM utilizzati:
 https://help.eset.com/eea/7/en-US/rmm_json_commands_application.html?rmm_json_commands.html
 
-
-
 ## Script esterni
 Il template fa uso del file checkviruslog.ps1 per creare dei log temporanei per inviare a Zabbix informazioni sul rilevamento dei Virus negli ultimi 5 minuti.
 
