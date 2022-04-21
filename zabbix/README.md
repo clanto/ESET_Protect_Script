@@ -55,6 +55,12 @@ Non ci sono macro
 |Aggiornamenti ultimo eseguito con successo|Dependent Item| ```aggiornamento.riuscito``` |```ESET: Log Aggiornamenti Endpoint ESET```|Testo|`Antivirus:ESET` `ESET:Aggiornamenti`|```JSONPath -> $.result.last_successful_update_time```|
 |Aggiornamenti Ultimo Tentativo ESET|Dependent Item| ```aggiornamento.tentato``` |```ESET: Log Aggiornamenti Endpoint ESET```|Testo|`Antivirus:ESET` `ESET:Aggiornamenti`|```JSONPath -> $.result.last_update_time```|
 
+## Elementi Dipendenti Licenza
+In Aggiornamento
+
+## Elementi Dipendenti Minacce
+In Aggiornamento
+
 ## Triggers
 | Nome        | Descrizione           | Severità  | Tag  | Espressione  |
 | ------------- |:-------------|:-------------|:-------------|:-----|
