@@ -41,12 +41,19 @@ Non ci sono macro
 |Deploy ESET Script|Agente Zabbix|```system.run[mkdir C:\PROGRA~1\ZABBIX~1\script & powershell.exe -NoProfile -ExecutionPolicy Bypass -command Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/clanto/ESET_Protect_Script/main/zabbix/checkviruslog.ps1' -OutFile "$Env:Programfiles\ZABBIX~1\script\checkviruslog.ps1",nowait]```|Testo|1d|`Antivirus:ESET` `ESET:Log`|
 |Log Minacce ultimi 5 minuti<br><br>All'interno della chiave il valore ```-time_check 5``` equivale ai 5 minuti, si può modificare questo numero ed impostare il numero di minuti per cui si vuole recuperare il log|Agente Zabbix|```system.run[powershell -NoProfile -ExecutionPolicy bypass -File "C:\PROGRA~1\ZABBIX~1\script\checkviruslog.ps1" -time_check 5]```|Testo|10s|`Antivirus:ESET` `ESET:Log`|
 
-## Elementi Dipendenti
+## Elementi Dipendenti Info
 | Nome        | Tipo           | Chiave  | Master Item  |Tipo di informazione | Tag | Preprocesso|
 | ------------- |:-------------|:-------------|:-------------|:-----|:-----|:-----|
 |Info Versione Endpoint ESET|Dependent Item| ```versione.endpoint``` |```ESET: Log Info Endpoint ESET```|Testo|`Antivirus:ESET` `ESET:Info`|```JSONPath -> $.result.version```|
 |Info Prodotto Endpoint ESET|Dependent Item| ```prodotto.endpoint``` |```ESET: Log Info Endpoint ESET```|Testo|`Antivirus:ESET` `ESET:Info`|```JSONPath -> $.result.description```|
 |Info Lingua Endpoint ESET|Dependent Item| ```info.endpoint.lang``` |```ESET: Log Info Endpoint ESET```|Testo|`Antivirus:ESET` `ESET:Info`|```JSONPath -> $.result.lang_id```<br><br>```Sostituisci: 1040 -> Italiano```|
+
+## Elementi Dipendenti Aggiornamenti
+| Nome        | Tipo           | Chiave  | Master Item  |Tipo di informazione | Tag | Preprocesso|
+| ------------- |:-------------|:-------------|:-------------|:-----|:-----|:-----|
+|Aggiornamenti Risultato ultimo tentativo|Dependent Item| ```aggiornamento.risultato``` |```ESET: Log Aggiornamenti Endpoint ESET```|Testo|`Antivirus:ESET` `ESET:Aggiornamenti`|```JSONPath -> $.result.last_update_result```|
+|Aggiornamenti ultimo eseguito con successo|Dependent Item| ```aggiornamento.riuscito``` |```ESET: Log Aggiornamenti Endpoint ESET```|Testo|`Antivirus:ESET` `ESET:Aggiornamenti`|```JSONPath -> $.result.last_successful_update_time```|
+|Aggiornamenti Ultimo Tentativo ESET|Dependent Item| ```aggiornamento.tentato``` |```ESET: Log Aggiornamenti Endpoint ESET```|Testo|`Antivirus:ESET` `ESET:Aggiornamenti`|```JSONPath -> $.result.last_update_time```|
 
 ## Triggers
 | Nome        | Descrizione           | Severità  | Tag  | Espressione  |
