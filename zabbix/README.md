@@ -37,7 +37,7 @@ Utilizzo CPU per i singoli servizi
 | ------------- |:-------------|:-------------|:-------------|:-----|:-----|:-----|
 |Log Info Endpoint ESET|Agente Zabbix|```system.run[C:\PROGRA~1\ESET\ESETSE~1\eRmm.exe get application-info]```|Testo|1d|`Antivirus:ESET` `ESET:Log`|
 |Log Licenza Endpoint ESET|Agente Zabbix|```system.run[C:\PROGRA~1\ESET\ESETSE~1\eRmm.exe get license-info]```|Testo|1d|`Antivirus:ESET` `ESET:Log`|
-|Log Stato Protezione Endpoint ESET|Agente Zabbix|```system.run[C:\PROGRA~1\ESET\ESETSE~1\eRmm.exe get protection-status]```|Testo|10s|`Antivirus:ESET` `ESET:Log`|```JSONPath -> $.result.description```<br><br>```Sostituisci: You are protected -> Protezione attiva```<br><br>```Sostituisci: Security alert -> Protezione Disattivata```|
+|Log Stato Protezione Endpoint ESET|Agente Zabbix|```system.run[C:\PROGRA~1\ESET\ESETSE~1\eRmm.exe get protection-status]```|Testo|1m|`Antivirus:ESET` `ESET:Log`|```JSONPath -> $.result.description```<br><br>```Sostituisci: You are protected -> Protezione attiva```<br><br>```Sostituisci: Security alert -> Protezione Disattivata```|
 |Log Aggiornamenti Endpoint ESET|Agente Zabbix|```system.run[C:\PROGRA~1\ESET\ESETSE~1\eRmm.exe get update-status]```|Testo|10m|`Antivirus:ESET` `ESET:Log`|
 |Log Minacce ultimi 5 minuti<br><br>All'interno della chiave il valore ```-time_check 5``` equivale ai 5 minuti, si può modificare questo numero ed impostare il numero di minuti per cui si vuole recuperare il log|Agente Zabbix|```system.run[powershell -NoProfile -ExecutionPolicy bypass -File "C:\PROGRA~1\ZABBIX~1\script\checkviruslog.ps1" -time_check 5]```|Testo|10s|`Antivirus:ESET` `ESET:Log`|
 
@@ -72,10 +72,12 @@ In Aggiornamento
 ## Triggers
 | Nome        | Descrizione           | Severità  | Tag  | Espressione  |
 | ------------- |:-------------|:-------------|:-------------|:-----|
-| 	Licenza ESET in scadenza     | Controlla la scadenza della licenza ed avvisa in caso di problemi. | Media |`Antivirus:ESET` `ESET:Alert`|``` last(/ESET/ESET.licenza.stato)<>"ok" ```
-| Minaccia Rilevata      | Non appena viene rilevata una minaccia viene creato un trigger della minaccia |   Media |`Antivirus:ESET` `ESET:Alert`|``` last(/ESET/ESET.Rilevamento)="Minaccia Rilevata" ```
-| Protezione ESET Disattivata | E' stato disabilitato un conponente di ESET      |    Media |`Antivirus:ESET` `ESET:Alert`|``` last(/ESET/system.run[C:\PROGRA~1\ESET\ESETSE~1\eRmm.exe get protection-status],#10)<>"Protezione attiva" ```
-| Servizio ESET Disattivato | Il servizio non è in esecuzione      |    Media |`Antivirus:ESET` `ESET:Alert`|``` last(/ESET/service.info["ekrn",state])<>0 ```
+|Licenza ESET in scadenza|Controlla la scadenza della licenza ed avvisa in caso di problemi. | Media |`Antivirus:ESET` `ESET:Alert`|``` last(/ESET/ESET.licenza.stato)<>"ok" ```|
+|Minaccia Rilevata| Non appena viene rilevata una minaccia viene creato un trigger della minaccia |   Media |`Antivirus:ESET` `ESET:Alert`|``` last(/ESET/ESET.Rilevamento)="Minaccia Rilevata" ```|
+| Protezione ESET Disattivata | E' stato disabilitato un conponente di ESET|Media |`Antivirus:ESET` `ESET:Alert`|``` last(/ESET/system.run[C:\PROGRA~1\ESET\ESETSE~1\eRmm.exe get protection-status],#10)<>"Protezione attiva" ```|
+|Servizio "ESET Service" Non Attivo| Il servizio non è in esecuzione|Media|`Antivirus:ESET` `ESET:Alert`|``` min(/ESET Endpoint/service.info["ekrn",state],#3)<>0 ```|
+|Servizio "ESET Management Agent" Non Attivo| Il servizio non è in esecuzione|Media|`Antivirus:ESET` `ESET:Alert`|``` min(/ESET Endpoint/service.info["EraAgentSvc",state],#3)<>0 ```|
+|Servizio "ESET Firewall Helper" Non Attivo| Il servizio non è in esecuzione|Media|`Antivirus:ESET` `ESET:Alert`|``` min(/ESET Endpoint/service.info["ekrnEpfw",state],#3)<>0 ```|
 
 ## Autore
 Lingua: Italiano<br>
